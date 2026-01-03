@@ -1,6 +1,6 @@
 ---
 title: "¡Bienvenidos!"
-subtitle: "Ingeniería Civil • Datos • Territorio"
+subtitle: "Ingeniería Civil • UNI"
 about:
   template: trestles
   image-width: 15em
@@ -11,30 +11,33 @@ about:
       href: https://github.com/RafiReyes
 ---
 
-¡Hola! Soy **Rafi Reyes**. Este es mi sitio web creado con **Quarto + GitHub Pages**.
+Soy **Rafael Reyes**. Este es mi sitio web creado con **Quarto + GitHub Pages**.
 
 Aquí compartiré mis proyectos, apuntes y trabajos relacionados con **ingeniería**, **datos** y **desarrollo territorial**.
 
 ::: {.callout-note collapse="true" appearance="simple" icon="false"}
 ## Educación
-- **Universidad Nacional de Ingeniería (UNI)** — Ingeniería Civil
-- (Agrega aquí tu posgrado/cursos si quieres)
+
+-   **Universidad Nacional de Ingeniería (UNI)** — Ingeniería Civil
+-   Física
 :::
 
 ::: {.callout-note collapse="true" appearance="simple" icon="false"}
 ## Intereses
-- Análisis estructural
-- Ciencia de datos aplicada
-- Planificación territorial
-- Investigación y tesis
+
+-   Análisis estructural
+-   Ciencia de datos aplicada
+-   Planificación territorial
+-   Investigación y tesis
 :::
 
 ::: {.callout-note collapse="true" appearance="simple" icon="false"}
 ## ¿Qué encontrarás aquí?
-- Portafolio de proyectos
-- Reportes (Quarto)
-- Material de estudio
-- Contacto
+
+-   Portafolio de proyectos
+-   Reportes (Quarto)
+-   Material de estudio
+-   Contacto
 :::
 
 https://rafireyes.github.io/mywebsite/
