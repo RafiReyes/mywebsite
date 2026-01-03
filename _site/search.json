@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "mywebsite",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2\n\ngetwd()\n\n[1] \"D:/2025/WebQuarto/mywebsite\""
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2\n\ngetwd()\n\n[1] \"D:/2025/WebQuarto/mywebsite\"\n\n\nhttps://rafireyes.github.io/mywebsite/"
   },
   {
     "objectID": "about.html",
