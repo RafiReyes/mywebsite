@@ -10,22 +10,29 @@ website:
       - href: index.qmd
         text: Inicio
       - href: mapas_guia.qmd
-        text: mapas
+        text: Mapas
       - href: proyectos.qmd
         text: Proyectos
       - href: contacto.qmd
         text: Contacto
+    tools:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/jnut/
+      - icon: github
+        href: https://github.com/jurteagat
+      - icon: youtube
+        href: https://www.youtube.com/@jurteagat/
 
 
 format:
   html:
     theme:
-      light: flatly
+      light: minty
       dark: darkly
-    css: styles.css
     respect-user-color-scheme: true
     toc: true
     toc-location: left
     toc-depth: 2
+
 
 editor: visual
