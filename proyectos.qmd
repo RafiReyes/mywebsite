@@ -5,9 +5,11 @@ title: "Proyectos"
 ## Portafolio
 
 ### 1) Proyecto A
-- Descripción breve
-- Herramientas: R, Quarto, etc.
+
+-   Descripción breve
+-   Herramientas: R, Quarto, etc.
 
 ### 2) Proyecto B
-- Descripción breve
-- Resultados / enlaces
+
+-   Descripción breve
+-   Resultados / enlaces
