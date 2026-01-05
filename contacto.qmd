@@ -1,7 +1,19 @@
 ---
 title: "Contacto"
+format: html
 ---
 
 Puedes encontrarme en:
 
--   GitHub: https://github.com/RafiReyes
+- **GitHub:** 
+
+```{=html}
+<div style="display: flex; justify-content: flex-start; margin-top: 2em;">
+  <iframe 
+    src="https://docs.google.com/forms/d/e/1FAIpQLScnIq-Fakd5vFe0SxqsBYtFtbg71Gsj8MqGH_-5i1P162g_vg/viewform?embedded=true"
+    width="640" 
+    height="719" 
+    style="border-radius:10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    Cargando…
+  </iframe>
+</div>
