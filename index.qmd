@@ -11,7 +11,7 @@ about:
       href: https://github.com/RafiReyes
 ---
 <p align="center">
-  <img src="images/gif_tierra.gif" alt="Animación del giro del mundo" width="350"/>
+  <img src="images/gif_tierra.gif" alt="Animación del giro del mundo" width="50"/>
 </p>
 
 Soy **Rafael Reyes**. Este es mi sitio web creado con **Quarto + GitHub Pages**.
