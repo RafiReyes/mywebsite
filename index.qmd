@@ -1,27 +1,19 @@
 ---
 title: "¡Bienvenidos!"
 subtitle: "Ingeniería Civil • UNI"
-# about:
-#   template: trestles
-#   image-width: 15em
-#   image-shape: rounded
-#   links:
-#     - icon: github
-#       text: GitHub
-#       href: https://github.com/RafiReyes
+about:
+  template: trestles
+  image-width: 15em
+  image-shape: rounded
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/RafiReyes
 ---
-:::: {.columns}
+<p align="center">
+  <img src="images/gif_tierra.gif" alt="Animación del giro del mundo" width="350"/>
+</p>
 
-::: {.column width="60%"}
-![](images/torre.jpg){fig-alt="Imagen de portada" width=100%}
-
-<!-- GIF abajo a la izquierda -->
-<div style="margin-top: 18px;">
-  <img src="images/gif_tierra.gif" alt="Tierra girando" style="width: 220px; border-radius: 12px; display:block;"/>
-</div>
-:::
-
-::: {.column width="55%"}
 Soy **Rafael Reyes**. Este es mi sitio web creado con **Quarto + GitHub Pages**.
 
 Aquí compartiré mis proyectos, apuntes y trabajos relacionados con **ingeniería**, **datos** y **desarrollo territorial**.
@@ -29,28 +21,26 @@ Aquí compartiré mis proyectos, apuntes y trabajos relacionados con **ingenier�
 ::: {.callout-note collapse="true" appearance="simple" icon="false"}
 ## Educación
 
-- **Universidad Nacional de Ingeniería (UNI)** — Ingeniería Civil
-- Física
+-   **Universidad Nacional de Ingeniería (UNI)** — Ingeniería Civil
+-   Física
 :::
 
 ::: {.callout-note collapse="true" appearance="simple" icon="false"}
 ## Intereses
 
-- Análisis estructural
-- Ciencia de datos aplicada
-- Planificación territorial
-- Investigación y tesis
+-   Análisis estructural
+-   Ciencia de datos aplicada
+-   Planificación territorial
+-   Investigación y tesis
 :::
 
 ::: {.callout-note collapse="true" appearance="simple" icon="false"}
 ## ¿Qué encontrarás aquí?
 
-- Portafolio de proyectos
-- Reportes (Quarto)
-- Material de estudio
-- Contacto
-:::
+-   Portafolio de proyectos
+-   Reportes (Quarto)
+-   Material de estudio
+-   Contacto
 :::
 
-::::
-
+https://rafireyes.github.io/mywebsite/
