@@ -41,6 +41,7 @@ Aquí compartiré mis proyectos, apuntes y trabajos relacionados con **ingenier�
 -   Reportes (Quarto)
 -   Material de estudio
 -   Contacto
+
 :::
 
 https://rafireyes.github.io/mywebsite/

@@ -1,240 +1,47 @@
 ---
-title: "Mapas en R"
-author: "Rafael Reyes"
-subtitle: "Breve guia para elaborar tus primeros mapas interactivos en R"
+title: "Inicio"
+subtitle: "Portafolio de Rafael Reyes"
 format:
   html:
-    toc: true          # tabla de contenido
-    toc-depth: 2       # nivel de profundidad en el índice
-    code-fold: true    # bloques de código plegables
-    code-summary: "Ver código R"
-    df-print: paged    # dataframes largos paginados cuando no uses DT
-    code-overflow: wrap
+    toc: true
+    toc-depth: 2
+    code-fold: true
     highlight-style: dracula
 execute:
-  echo: true           # muestra el código en el HTML final
+  echo: false
   warning: false
   message: false
-editor: visual
+  freeze: auto
 ---
 
-```{=html}
-<style>
-h1.title {
-  text-align: center;
-  font-weight: 700;
-  margin-bottom: 0.2em;
-}
-
-.subtitle {
-  text-align: center;
-  font-style: italic;
-  color: #444;
-  margin-top: 0;
-  margin-bottom: 1.5em;
-}
-
-p, li {
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-h2, h3, h4 {
-  text-align: left;
-  font-weight: 600;
-  margin-top: 1.8em;
-  margin-bottom: 0.6em;
-}
-
-.author {
-  text-align: center;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 0.5em;
-}
-</style>
-```
-
-# 1. Instalación de paquetes
-
-Antes de comenzar a crear mapas en R, es necesario contar con los paquetes adecuados. Estos permiten trabajar con datos espaciales, visualizarlos y generar mapas interactivos. La instalación debe hacerse únicamente una vez, de preferencia desde un script separado, para evitar problemas al renderizar documentos Quarto.
-
-# 2. Carga de Librerías
-
-Una vez instalados los paquetes, se cargan al inicio del documento con library(). Esto es necesario cada vez que se ejecute el código.
-
-Este paso habilita todas las funciones requeridas para trabajar con mapas, desde la gestión de datos espaciales (sf) hasta su visualización (tmap y leaflet). Es recomendable centralizar esta carga al inicio del .qmd para mantener orden y claridad.
-
 ```{r}
-### LAS INSTALACIONES REALIZARLAS EN UN SCRIP APARTE
-### CON EL FIN DE NO GENERAR PROBLEMAS EN EL RENDER DEL qmd.
-# install.packages("here")
-# install.packages("sf")
-# install.packages("terra")
-# install.packages("geodata")
-# install.packages("tmap")
-# install.packages("leaflet")
-
-# c("sf", "tmap", "leaflet", "geodata", "terra", "tmap") %in% installed.packages()
+#| label: mapa-interactivo
+#| echo: false
+#| warning: false
+#| message: false
 
 library(here)
 library(sf)
-library(terra)
 library(geodata)
-library(tmap)
 library(leaflet)
-```
 
-# 3. Configuración del Proyecto y Uso de ***here()***
-
-Utilizar rutas absolutas como C:/Users/... puede causar errores cuando se ejecuta el proyecto en otra computadora. El paquete ***here*** permite trabajar con **rutas relativas**, facilitando la portabilidad y organización del proyecto.
-
-Crear una carpeta *data/* dentro del proyecto permite almacenar los archivos geoespaciales que se usarán en los mapas. Este enfoque sigue buenas prácticas de ciencia de datos reproducible.
-
-```{r}
-# Crear carpeta data si no existe
 dir.create(here("data"), showWarnings = FALSE)
+gpkg <- here("data", "peru_deps_lvl1.gpkg")
 
-# Descargar Perú nivel 1 (departamentos) y guardar en /data
-peru_lvl1 <- geodata::gadm("PER", level = 1, path = here("data"))
+if (!file.exists(gpkg)) {
+  peru_lvl1 <- geodata::gadm("PER", level = 1, path = here("data"))
+  deps <- sf::st_as_sf(peru_lvl1)
+  sf::st_write(deps, gpkg, delete_dsn = TRUE)
+}
 
-# Convertir a sf
-deps <- sf::st_as_sf(peru_lvl1)
+deps <- sf::st_read(gpkg, quiet = TRUE)
+deps_view <- sf::st_simplify(deps, dTolerance = 0.03, preserveTopology = TRUE)
+deps_wgs <- sf::st_transform(deps_view, 4326)
 
-# Mostrar objeto
-deps
-```
-
-# 4. Uso de ***tmap***
-
-tmap es un paquete diseñado para crear mapas temáticos con una sintaxis clara y muy flexible. Su modo **plot** genera mapas estáticos ideales para informes, artículos y documentos académicos.
-
-Además, *tmap* permite agregar elementos cartográficos como título, barra de escala, rosa de vientos, paletas de colores y leyendas.
-
-```{r}
-tmap_mode("plot")
-
-tm_shape(deps) +
-  tm_polygons() +
-  tm_layout(title = "Mapa del Perú – Departamentos")
-```
-
-Mapa con colores temáticos
-
-```{r}
-tm_shape(deps) +
-  tm_polygons("NAME_1", palette = "Set3", title = "Departamento") +
-  tm_text("NAME_1", size = 0.5) +
-  tm_layout(title = "Departamentos del Perú con etiquetas")
-```
-
-Mapa interactivo con tmap_view()
-
-```{r}
-tmap_mode("view")
-tm_shape(deps) + tm_polygons("NAME_1")
-```
-
-# 5. Uso de ***Leaflet***
-
-leaflet permite crear mapas web completamente personalizables, con gran detalle en popups, capas, iconos, tiles y estilo visual. Es el estándar para mapas interactivos en aplicaciones web y dashboards (especialmente con Shiny). A diferencia de *tmap*, que es más automático, leaflet da mayor control y personalización. Es recomendable para proyectos donde se integren múltiples capas, análisis territoriales avanzados o manejo de datos SIG web.
-
-```{r}
-leaflet(deps) |>
-  addProviderTiles("CartoDB.Positron") |>
-  addPolygons()
-```
-
-# 6. Aplicaciones variadas
-
-## tmap (estático, “plot”) – mapa limpio y profesional
-
-```{r}
-tmap_mode("plot")
-
-# Mapa base
-tm_shape(deps) +
-  tm_polygons() +
-  tm_scale_bar() +
-  tm_compass(type = "8star") +
-  tm_layout(title = "Perú – Departamentos",
-            legend.outside = TRUE)
-```
-
-## Etiquetas y paleta
-
-```{r}
-tm_shape(deps) +
-  tm_polygons(col = "NAME_1", palette = "Set3", title = "Departamento") +
-  tm_text("NAME_1", size = 0.5, col = "black") +
-  tm_scale_bar() + tm_compass() +
-  tm_layout(title = "Perú – con etiquetas", legend.outside = TRUE)
-```
-
-## Exportar imagen (PNG)
-
-```{r}
-tmap_save(
-  tm_shape(deps) + tm_polygons() + tm_layout(title = "Perú – PNG"),
-  filename = here::here("mapas_guia_files", "peru_departamentos.png"),
-  width = 2000, height = 1400, dpi = 200
-)
-```
-
-## Choropleth con dato numérico (ejemplo)
-
-Un choropleth (kóro-pleth) es un tipo de mapa temático que utiliza colores o tonalidades para representar un valor numérico asociado a diferentes áreas geográficas.
-
-Creamos un valor falso por departamento para practicar (p. ej., “monto”).
-
-```{r}
 set.seed(1)
-deps$montoviable <- runif(nrow(deps), 10, 100)  # ejemplo
+deps_wgs$montoviable <- runif(nrow(deps_wgs), 10, 100)
 
-tm_shape(deps) +
-  tm_polygons("montoviable", palette = "viridis", style = "quantile",
-              title = "Monto viable (M)") +
-  tm_layout(title = "Choropleth – ejemplo")
-```
-
-## tmap interactivo (view)
-
-```{r}
-tmap_mode("view")
-
-tm_shape(deps) +
-  tm_polygons("montoviable",
-              id = "NAME_1",                      # aparece en tooltip
-              popup.vars = c(Departamento = "NAME_1",
-                             "Monto viable (M)" = "montoviable")) +
-  tm_basemap("CartoDB.Positron")
-```
-
-## Exportar a HTML interactivo
-
-```{r}
-tmap_mode("view")
-
-mapa_inter <- tm_shape(deps) +
-  tm_polygons("montoviable",
-              id = "NAME_1",
-              popup.vars = c("Departamento" = "NAME_1",
-                             "Monto viable (M)" = "montoviable")) +
-  tm_basemap("CartoDB.Positron")
-
-tmap_save(mapa_inter,
-          filename = here::here("mapas_guia_files", "peru_departamentos.html"))
-```
-
-## Leaflet (control fino de popups/leyenda)
-
-Para enriquecer la información que se mostrará en el mapa, es útil crear una nueva columna dentro del objeto espacial. Esta columna puede contener texto combinando diferentes variables, lo que permite mostrar información más completa en las etiquetas o popups del mapa.
-
-```{r}
-# Asegura CRS WGS84 para web
-deps_wgs <- sf::st_transform(deps, 4326)
-
-pal <- colorNumeric("viridis", domain = deps_wgs$montoviable)
+pal <- colorNumeric(palette = "viridis", domain = deps_wgs$montoviable)
 
 leaflet(deps_wgs) |>
   addProviderTiles("CartoDB.Positron") |>
@@ -250,23 +57,6 @@ leaflet(deps_wgs) |>
   ) |>
   addLegend("bottomright", pal = pal, values = ~montoviable,
             title = "Monto viable (M)")
+
 ```
 
-## Cálculos en metros (UTM) y luego mostrar en web
-
-Para medir/áreas usa UTM (Perú 18S/19S); para web vuelve a 4326.
-
-```{r}
-deps_utm <- sf::st_transform(deps, 32718)  # UTM 18S
-deps_utm$area_km2 <- as.numeric(sf::st_area(deps_utm)) / 1e6
-
-# Mapa estático con áreas
-tmap_mode("plot")
-tm_shape(deps_utm) +
-  tm_polygons("area_km2", palette = "plasma", style = "quantile",
-              title = "Área (km²)") +
-  tm_layout(title = "Perú – Área por departamento")
-
-# Para web: volver a WGS84
-deps_web <- sf::st_transform(deps_utm, 4326)
-```

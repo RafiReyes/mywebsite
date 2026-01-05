@@ -5,5 +5,3 @@ title: "Contacto"
 Puedes encontrarme en:
 
 -   GitHub: https://github.com/RafiReyes
--   (Agrega LinkedIn)
--   (Agrega correo si deseas)
