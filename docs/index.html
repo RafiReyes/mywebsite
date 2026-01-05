@@ -35,6 +35,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -71,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -112,30 +113,44 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
-<div class="quarto-about-trestles">
-  <div class="about-entity">
+<main class="content" id="quarto-document-content">
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">¡Bienvenidos!</h1>
 <p class="subtitle lead">Ingeniería Civil • UNI</p>
 </div>
+
+
+
 <div class="quarto-title-meta">
+
+    
+  
+    
   </div>
+  
+
+
 </header>
-    <div class="about-links">
-  <a href="https://github.com/RafiReyes" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
+
+
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img src="images/torre.jpg" class="img-fluid" style="width:100.0%" alt="Imagen de portada"></p>
+<!-- GIF abajo a la izquierda -->
+<div style="margin-top: 18px;">
+<p><img src="images/gif_tierra.gif" alt="Tierra girando" style="width: 220px; border-radius: 12px; display:block;"></p>
 </div>
-  </div>
-  <div class="about-contents"><main class="content" id="quarto-document-content">
-<p align="center">
-<img src="images/gif_tierra.gif" alt="Animación del giro del mundo" width="350">
-</p>
+</div><div class="column" style="width:55%;">
 <p>Soy <strong>Rafael Reyes</strong>. Este es mi sitio web creado con <strong>Quarto + GitHub Pages</strong>.</p>
 <p>Aquí compartiré mis proyectos, apuntes y trabajos relacionados con <strong>ingeniería</strong>, <strong>datos</strong> y <strong>desarrollo territorial</strong>.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
@@ -199,14 +214,21 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>https://rafireyes.github.io/mywebsite/</p>
-
-
-</main></div>
 </div>
- <!-- /main -->
+</div>
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
